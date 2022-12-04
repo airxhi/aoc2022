@@ -11,18 +11,16 @@ day4 inp = do
     print $ part2 content
 
 type Range = (Int, Int)
+type Part3Func = Range -> Range -> Bool
 
 part1 :: [(Range, Range)] -> Int
-part1 = evaluatePart (applyFlipped fullyContained)
+part1 = evaluatePart fullyContained
 
 part2 :: [(Range, Range)] -> Int
-part2 = evaluatePart (applyFlipped partiallyContained)
+part2 = evaluatePart partiallyContained
 
-applyFlipped :: (t -> t -> a) -> (t, t) -> [a]
-applyFlipped f (x,y) = [f x y, f y x] 
-
-evaluatePart :: (Functor t1, Foldable t1, Foldable t2) => (a -> t2 Bool) -> t1 a -> Int
-evaluatePart f = sum . fmap (fromEnum . or . f)
+evaluatePart :: Part3Func -> [(Range, Range)] -> Int
+evaluatePart f = sum . fmap (fromEnum . (\(a,b) -> (||) (f a b) (f b a)))
 
 fullyContained :: Range -> Range -> Bool
 fullyContained (a,b) (c,d) = a >= c && b <= d
