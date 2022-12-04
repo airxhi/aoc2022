@@ -11,7 +11,7 @@ day4 inp = do
     print $ part2 content
 
 type Range = (Int, Int)
-type Part3Func = Range -> Range -> Bool
+type Part4Func = Range -> Range -> Bool
 
 part1 :: [(Range, Range)] -> Int
 part1 = evaluatePart fullyContained
@@ -19,14 +19,14 @@ part1 = evaluatePart fullyContained
 part2 :: [(Range, Range)] -> Int
 part2 = evaluatePart partiallyContained
 
-evaluatePart :: Part3Func -> [(Range, Range)] -> Int
-evaluatePart f = sum . fmap (fromEnum . (\(a,b) -> (||) (f a b) (f b a)))
+evaluatePart :: Part4Func -> [(Range, Range)] -> Int
+evaluatePart f = sum . fmap (fromEnum . uncurry f)
 
 fullyContained :: Range -> Range -> Bool
-fullyContained (a,b) (c,d) = a >= c && b <= d
+fullyContained (a,b) (c,d) = (a >= c && b <= d) || (c >= a && d <= b)
 
 partiallyContained :: Range -> Range -> Bool
-partiallyContained (a,_) (c,d) = a >= c && a <= d
+partiallyContained (a,b) (c,d) = (a >= c && a <= d) || (c >= a && c <= b)
 
 parseInput :: String -> [(Range, Range)]
 parseInput = map extractEntry . filter (/= "") . splitOn "\n"
