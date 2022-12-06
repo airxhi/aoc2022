@@ -71,6 +71,7 @@ resultPoints r
     | r == Draw = 3
     | r == Win = 6
 
+shapeToResult :: Shape -> Result
 shapeToResult s
     | s == Rock = Lose
     | s == Paper = Draw
