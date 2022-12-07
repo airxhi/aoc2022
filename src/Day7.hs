@@ -22,7 +22,6 @@ part2 (fs, _) = minimum $ filter (>head allDirs - (70000000-30000000)) allDirs
 
 data Crumb = Crumb String [FileSystem] [FileSystem] deriving (Show)
 type Zipper = (FileSystem, [Crumb])
-
 data FileSystem = File Int String | Directory String [FileSystem] deriving (Show)
 
 addDirectory :: String -> Zipper -> Zipper
