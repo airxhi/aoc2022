@@ -14,7 +14,7 @@ day7 inp = do
     print $ part2 c
 
 part1 :: (FileSystem, b) -> Int
-part1 (fs, _) = sumSizes fs
+part1 (fs, _) = sum . filter (< 100000) . allSizes $ fs
 
 part2 :: (FileSystem, b) -> Int
 part2 (fs, _) = minimum $ filter (>head allDirs - (70000000-30000000)) allDirs
@@ -49,9 +49,6 @@ dirMatches n (File _ s) = s == n
 isFile :: FileSystem -> Bool
 isFile (File _ _) = True
 isFile (Directory _ _) = False
-
-sumSizes :: FileSystem -> Int
-sumSizes = sum . filter (< 100000) . allSizes
 
 allSizes :: FileSystem -> [Int]
 allSizes (Directory _ items) =
