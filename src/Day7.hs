@@ -13,10 +13,10 @@ day7 inp = do
     print $ part1 c
     print $ part2 c
 
-part1 :: (FileSystem, b) -> Int
+part1 :: Zipper -> Int
 part1 (fs, _) = sum . filter (< 100000) . allSizes $ fs
 
-part2 :: (FileSystem, b) -> Int
+part2 :: Zipper -> Int
 part2 (fs, _) = minimum $ filter (>head allDirs - (70000000-30000000)) allDirs
     where allDirs = allSizes fs
 
