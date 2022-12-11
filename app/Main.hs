@@ -8,7 +8,8 @@ module Main (main) where
 -- import Day6
 -- import Day7
 -- import Day8
-import Day9
+-- import Day9
+import Day10
 
 run :: (String -> IO()) -> String -> IO ()
 run f fileName =
@@ -28,4 +29,5 @@ main =
         -- run day6 "../2022/day6.txt"
         -- run day7 "../2022/day7.txt"
         -- run day8 "../2022/day8.txt"
-        run day9 "../2022/day9.txt"
+        -- run day9 "../2022/day9.txt"
+        run day10 "../2022/day10.txt"
