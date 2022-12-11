@@ -5,7 +5,6 @@ module Day9
 import Data.List.Split ( splitOn )
 import Data.List ( nub )
 
-
 day9 :: String -> IO ()
 day9 inp = do
     let c = parseInput inp
