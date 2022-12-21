@@ -24,6 +24,8 @@ dependencies:
 - split >= 0.2.3.5 
 - MissingH
 - containers
+- parsec
+- sort
 
 ghc-options:
 - -Wall
